@@ -34,6 +34,7 @@ return {
           '.eslintrc.js',
           '.eslintrc.json',
           'eslint.config.js',
+          'eslint.config.mjs',
           'package.json',
           '.git'
         },
