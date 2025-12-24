@@ -20,10 +20,11 @@ return {
       },
     })
 
+    -- add rule for expanding tags on <Enter>
     autopairs.add_rules({
       Rule(">", "<", { "typescriptreact", "javascriptreact", "html" })
           :with_pair(function(opts)
-            -- Only expand if we are between ><
+            -- only expand if we are between ><
             return opts.char == "<"
           end)
       -- This move tells nvim-autopairs to handle the CR (Enter)
