@@ -9,16 +9,38 @@ return {
       "Saghen/blink.cmp",
     },
     config = function()
+      local lsps = {
+        "eslint",
+        "lua_ls",
+        "vtsls"
+      }
       -- Initial Setup
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "vtsls", "lua_ls" }, -- Auto-install these
+        -- autoinstall lsps
+        ensure_installed = lsps
       })
 
       -- MODERN API: Inject blink.cmp capabilities into ALL servers automatically
       -- This fixes the "no completion" issue globally.
       vim.lsp.config("*", {
         capabilities = require("blink.cmp").get_lsp_capabilities(),
+      })
+
+      vim.lsp.config("eslint", {
+        -- This helps the LSP find your config in monorepos or subfolders
+        root_markers = {
+          '.eslintrc',
+          '.eslintrc.js',
+          '.eslintrc.json',
+          'eslint.config.js',
+          'package.json',
+          '.git'
+        },
+        settings = {
+          workingDirectory = { mode = 'auto' },
+          format = true, -- Enable if you want to use LSP for formatting
+        }
       })
 
       -- MODERN API: Configure specific TS settings for vtsls
@@ -35,8 +57,8 @@ return {
         },
       })
 
-      -- MODERN API: Enable the servers
-      vim.lsp.enable({ "vtsls", "lua_ls" })
+      -- enable lsps
+      vim.lsp.enable(lsps)
     end,
   },
 
