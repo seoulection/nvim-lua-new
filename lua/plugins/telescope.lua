@@ -1,11 +1,16 @@
 return {
-	'nvim-telescope/telescope.nvim', tag = 'v0.2.0',
-	dependencies = { 'nvim-lua/plenary.nvim' },
-	config = function()
-		local builtin = require('telescope.builtin')
-		vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
-		vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = 'Telescope live grep' })
-		vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers' })
-		vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'Telescope help tags' })
-	end
+  'nvim-telescope/telescope.nvim',
+  tag = 'v0.2.0',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  config = function()
+    local builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files' })
+    vim.keymap.set('n', '<leader>g', builtin.live_grep, { desc = 'Telescope live grep' })
+    vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers' })
+    vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'Telescope help tags' })
+    -- go to definition in vertical split
+    vim.keymap.set("n", "<leader>o", function()
+      builtin.lsp_definitions({ jump_type = "vsplit" })
+    end)
+  end
 }
