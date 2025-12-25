@@ -30,11 +30,8 @@ return {
       vim.lsp.config("eslint", {
         -- This helps the LSP find your config in monorepos or subfolders
         root_markers = {
-          '.eslintrc',
-          '.eslintrc.js',
-          '.eslintrc.json',
-          'eslint.config.js',
-          'eslint.config.mjs',
+          'eslint.config.*', -- Catches .js, .mjs, .cjs (Flat Config)
+          '.eslintrc*',
           'package.json',
           '.git'
         },
