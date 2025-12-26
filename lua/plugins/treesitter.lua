@@ -44,21 +44,18 @@ return {
 
     -- initialize treesitter
     local ts = require('nvim-treesitter')
-
-    ts.install({
+    local patterns = {
+      'elixir',
       'javascript',
       'lua',
       'typescript',
       'tsx'
-    })
+    }
+
+    ts.install(patterns)
 
     vim.api.nvim_create_autocmd('FileType', {
-      pattern = {
-        'javascript',
-        'javascriptreact',
-        'typescript',
-        'typescriptreact'
-      },
+      pattern = patterns,
       callback = function()
         -- only start if a parser exists for this filetype
         if pcall(vim.treesitter.start) then
