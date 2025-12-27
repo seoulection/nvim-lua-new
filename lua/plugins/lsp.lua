@@ -11,6 +11,7 @@ return {
     config = function()
       local lsps = {
         "eslint",
+        "expert",
         "lua_ls",
         "vtsls"
       }
@@ -39,6 +40,13 @@ return {
           workingDirectory = { mode = 'auto' },
           format = true, -- Enable if you want to use LSP for formatting
         }
+      })
+
+      -- local build of `expert`
+      vim.lsp.config('expert', {
+        cmd = { 'expert', '--stdio' },
+        root_markers = { 'mix.exs', '.git' },
+        filetypes = { 'elixir', 'eelixir', 'heex' },
       })
 
       -- MODERN API: Configure specific TS settings for vtsls
