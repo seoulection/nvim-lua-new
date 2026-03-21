@@ -13,6 +13,7 @@ return {
         "eslint",
         "expert",
         "lua_ls",
+        "rust_analyzer",
         "vtsls"
       }
       -- Initial Setup
@@ -47,6 +48,16 @@ return {
         cmd = { 'expert', '--stdio' },
         root_markers = { 'mix.exs', '.git' },
         filetypes = { 'elixir', 'eelixir', 'heex' },
+      })
+
+      vim.lsp.config('rust_analyzer', {
+        settings = {
+          ['rust-analyzer'] = {
+            diagnostics = {
+              enable = true,
+            }
+          }
+        }
       })
 
       -- MODERN API: Configure specific TS settings for vtsls
