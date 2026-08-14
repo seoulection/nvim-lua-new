@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
     -- Format on save if the server supports it
-    if client and client.supports_method("textDocument/formatting") then
+    if client and client:supports_method("textDocument/formatting") then
       vim.api.nvim_create_autocmd("BufWritePre", {
         buffer = args.buf,
         callback = function()
